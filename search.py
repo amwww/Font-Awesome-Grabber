@@ -11,7 +11,11 @@ while True:
                 db = json.load(f)
                 try:
                     match = db[unicode.upper()]
-                    print(f'Found type {folder.split("-")[1]}. Located in {folder}/{match[0]}.svg')
+                    if folder.split("-")[1] == 'duotone':
+                        print(f'Foreground: {folder}/{match[0]}.svg')
+                        print(f'Background: {folder}/{db[f"10{unicode.upper()}"][0]}.svg')
+                    else:
+                        print(f'Found type {folder.split("-")[1]}. Located in {folder}/{match[0]}.svg')
                 except KeyError:
                     print(f'No Matches Found type {folder}.')
     elif mode == '2':
