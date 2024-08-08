@@ -32,18 +32,19 @@ for font in tqdm(fonts):
     while True:
         try:
             glyph = zfont.glyph_fromid(glyphid)
-            print(f'Font {fontloc} - Glyph {glyphid}')
             with open(f'{fontloc.replace(".ttf", "")}/{glyphid}.svg', 'w+') as f:
                 f.write(glyph.svg())
             with open(f'{fontloc.replace(".ttf", "")}.json', 'r') as f:
                 db = json.load(f)
                 for char in glyph.char:
-                    db[f'{ord(char):X}'] = glyphid
+                    if f'{ord(char):X}' in db:
+                        db[f'{ord(char):X}'].append(glyphid)
+                    else:
+                        db[f'{ord(char):X}'] = [glyphid]
             with open(f'{fontloc.replace(".ttf", "")}.json', 'w+') as f:
                 json.dump(db, f, indent=4)
             glyphid += 1
         except Exception as e:
-            print(e)
             break
-
-import css
+if input('Press Enter to Continue with CSS or press Q to Quit...').lower() != 'q':
+    import css
