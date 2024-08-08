@@ -18,6 +18,7 @@ pip3 install -r requirements.txt
 pip install -r requirements.txt
 ```
 (Windows)
+
 4. Run the main.py file and wait.
 5. Fonts should be downloaded into the directory in the form of ttfs.
 6. You can also access svgs in the folders.
