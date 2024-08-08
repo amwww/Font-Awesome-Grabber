@@ -1,8 +1,15 @@
-folders = ['fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900']
 import json, shutil, os
+from tqdm import tqdm
+
+folders = ['fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900']
+
+print('Cleaning Library...', end='')
 shutil.rmtree('library', ignore_errors=True)
 os.mkdir('library')
-for folder in folders:
+print(' | Done')
+
+print('Building Library...')
+for folder in tqdm(folders):
     template = """
     <!DOCTYPE html>
     <html lang="en">
@@ -52,7 +59,6 @@ for folder in folders:
             idxs = json.load(j)
             for key in idxs:
                 iconidxtb[idxs[key][0]] = key
-        print(iconidxtb)
         for idx, svg in enumerate(svgs):
             f.write('<div class="icon-wrapper">')
             f.write(svg)
@@ -61,6 +67,7 @@ for folder in folders:
                 f.write(f'<p id="ttf-icon-{idx}" class="ttf-icon"></p>')
                 f.write(f'<a href="../../{folder}/{idx}.svg">{iconidxtb[idx]}</a>')
             except KeyError as e:
-                print(e)
+                pass
             f.write('</div>')
         f.write("\n</body>\n</html>")
+print('Finished.')

@@ -46,5 +46,7 @@ for font in tqdm(fonts):
             glyphid += 1
         except Exception as e:
             break
-if input('Press Enter to Continue with CSS or press Q to Quit...').lower() != 'q':
+if input('Press Enter to Continue with CSS or press Q to Quit...').lower() == '':
     import css
+    if input('Press Enter to Continue with CSS or press Q to Quit...').lower() == '':
+        import library

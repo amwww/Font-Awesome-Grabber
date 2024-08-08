@@ -12,8 +12,8 @@ while True:
                 try:
                     match = db[unicode.upper()]
                     if folder.split("-")[1] == 'duotone':
-                        print(f'Foreground: {folder}/{match[0]}.svg')
-                        print(f'Background: {folder}/{db[f"10{unicode.upper()}"][0]}.svg')
+                        print(f'Found type duotone (primary). Located in {folder}/{match[0]}.svg')
+                        print(f'Found type duotone (secondary). Located in {folder}/{db[f"10{unicode.upper()}"][0]}.svg')
                     else:
                         print(f'Found type {folder.split("-")[1]}. Located in {folder}/{match[0]}.svg')
                 except KeyError:
