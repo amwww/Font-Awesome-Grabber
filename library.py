@@ -1,7 +1,7 @@
 import json, shutil, os
 from tqdm import tqdm
 
-folders = ['fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900']
+folders = ['fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900', 'fa-duotone-combined-900']
 
 print('Cleaning Library...', end='')
 shutil.rmtree('library', ignore_errors=True)
@@ -46,12 +46,17 @@ for folder in tqdm(folders):
         f.write(template)
     with open(f'library/{folder}.html', 'a') as f:
         svgidx = 0
+        try:
+            with open(f'{folder}/0.svg', 'r') as s:
+                pass
+        except Exception as e:
+            svgidx = 1
         svgs = []
         while True:
             try:
                 with open(f'{folder}/{svgidx}.svg', 'r') as s:
                     svgs.append(s.read())
-            except Exception:
+            except Exception as e:
                 break
             svgidx += 1
         iconidxtb = {}
