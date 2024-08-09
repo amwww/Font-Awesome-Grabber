@@ -2,3 +2,4 @@ ziafont
 brotli
 tqdm
 rich
+rich_menu

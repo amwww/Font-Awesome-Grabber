@@ -13,6 +13,7 @@ installer = Menu(
     "Download & Proccess CSS",
     "Install Library",
     "Duotone Builder",
+    "Search Icons",
     "Reset All",
     "Backup All",
     "Restore Backup",
@@ -142,6 +143,9 @@ while True:
             if not hasdone('css'):
                 print_rich('[bold red]! Please Download & Proccess CSS First ![/bold red]')
                 continue
+            if not hasdone('duotone'):
+                print_rich('[bold red]! Please Build Duotone First ![/bold red]')
+                continue
             from library import library
             if hasdone('library'):
                 reinstall_menu = Menu('Yes', 'No', title='[bold yellow]Library Already Installed. Reinstall?[/bold yellow]', align='left', highlight_color='italic blue', panel_title='Reinstall Library')
@@ -164,3 +168,17 @@ while True:
             duotone()
             setdone('duotone')
             print_rich('[bold green]Done.[/bold green]')
+        case "Search Icons":
+            if not hasdone('fonts'):
+                print_rich('[bold red]! Please Download & Proccess Fonts First ![/bold red]')
+                continue
+            if not hasdone('css'):
+                print_rich('[bold red]! Please Download & Proccess CSS First ![/bold red]')
+                continue
+            if not hasdone('duotone'):
+                print_rich('[bold red]! Please Build Duotone First ![/bold red]')
+                continue
+            from search import search
+            search()
+        case "Exit":
+            exit()
