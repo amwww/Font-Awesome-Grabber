@@ -48,5 +48,7 @@ for font in tqdm(fonts):
             break
 if input('Press Enter to Continue with CSS or press Q to Quit...').lower() == '':
     import css
-    if input('Press Enter to Continue with CSS or press Q to Quit...').lower() == '':
+    if input('Press Enter to Continue with Library or press Q to Quit...').lower() == '':
         import library
+        if input('Press Enter to Continue with Duotone or press Q to Quit...').lower() == '':
+            import duotone

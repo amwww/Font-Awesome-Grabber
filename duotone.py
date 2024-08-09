@@ -1,12 +1,14 @@
-import os, shutil, json, re, ziafont
+import os, shutil, json, re
 from tqdm import tqdm
 
+print('Preparing Duotone...', end='')
 shutil.rmtree('fa-duotone-combined-900', ignore_errors=True)
 os.mkdir('fa-duotone-combined-900')
-
 with open('fa-duotone-combined-900.json', 'w') as f:
     f.write('{\n\n}')
+print(' | Done')
 
+print('Building Duotone...')
 with open('fa-duotone-900.json', 'r') as f:
     db = json.load(f)
     svgidxtb = {}
@@ -36,4 +38,4 @@ with open('fa-duotone-900.json', 'r') as f:
             wrapper1 = wrapper2
         with open(f'fa-duotone-combined-900/{idx}.svg', 'w') as f:
             f.write(svg2.replace('</svg>', innerSvg[0] + '</svg>').replace(wrapper2[0], wrapper1[0]) if innerSvg else svg2)
-
+print('Finished.')
