@@ -57,11 +57,11 @@ with open('installer.json', 'r') as f:
         print_rich('[bold red]In[/bold red]')
         with open('installer.json', 'w') as f:
             json.dump({}, f, indent=4)
+files = ['fa-solid-900.json', 'fa-regular-400.json', 'fa-light-300.json', 'fa-thin-100.json', 'fa-duotone-900.json', 'fa-duotone-combined-900.json', 'icons.json', 'fa-thin-100.ttf', 'fa-light-300.ttf', 'fa-regular-400.ttf', 'fa-solid-900.ttf', 'fa-duotone-900.ttf', 'installer.json']
+folders = ['libary', 'fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900', 'fa-duotone-combined-900', 'fa-sharp-solid-900', 'fa-sharp-regular-400', 'fa-sharp-light-300', 'fa-sharp-thin-100']
 while True:
     match installer.ask(screen=False):
         case "Backup All":
-            files = ['fa-solid-900.json', 'fa-regular-400.json', 'fa-light-300.json', 'fa-thin-100.json', 'fa-duotone-900.json', 'fa-duotone-combined-900.json', 'icons.json', 'fa-thin-100.ttf', 'fa-light-300.ttf', 'fa-regular-400.ttf', 'fa-solid-900.ttf', 'fa-duotone-900.ttf', 'installer.json']
-            folders = ['libary', 'fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900', 'fa-duotone-combined-900']
             print_rich('[bold yellow]Backing Up Files...[/bold yellow]')
             if not os.path.isdir('backups'):
                 os.mkdir('backups')
@@ -101,8 +101,6 @@ while True:
             if confirm == 'No':
                 continue
             print_rich('[bold yellow]Resetting All...[/bold yellow]')
-            files = ['fa-solid-900.json', 'fa-regular-400.json', 'fa-light-300.json', 'fa-thin-100.json', 'fa-duotone-900.json', 'fa-duotone-combined-900.json', 'icons.json', 'fa-thin-100.ttf', 'fa-light-300.ttf', 'fa-regular-400.ttf', 'fa-solid-900.ttf', 'fa-duotone-900.ttf', 'installer.json']
-            folders = ['libary', 'fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900', 'fa-duotone-combined-900']
             for file in tqdm(files):
                 if os.path.isfile(file):
                     os.remove(file)

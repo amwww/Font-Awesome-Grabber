@@ -14,7 +14,11 @@ def fonts():
         'https://site-assets.fontawesome.com/releases/v6.6.0/webfonts/fa-regular-400.woff2',
         'https://site-assets.fontawesome.com/releases/v6.6.0/webfonts/fa-light-300.woff2',
         'https://site-assets.fontawesome.com/releases/v6.6.0/webfonts/fa-thin-100.woff2',
-        'https://site-assets.fontawesome.com/releases/v6.6.0/webfonts/fa-duotone-900.woff2'
+        'https://site-assets.fontawesome.com/releases/v6.6.0/webfonts/fa-duotone-900.woff2',
+        'https://site-assets.fontawesome.com/releases/v6.6.0/webfonts/fa-sharp-solid-900.woff2',
+        'https://site-assets.fontawesome.com/releases/v6.6.0/webfonts/fa-sharp-regular-400.woff2',
+        'https://site-assets.fontawesome.com/releases/v6.6.0/webfonts/fa-sharp-light-300.woff2',
+        'https://site-assets.fontawesome.com/releases/v6.6.0/webfonts/fa-sharp-thin-100.woff2',
     ]
     print('Processing Fonts...')
     for idx, font in enumerate(fonts):

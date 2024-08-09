@@ -1,7 +1,6 @@
 import json
 
-
-folders = ['fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900', 'fa-duotone-combined-900']
+folders = ['fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900', 'fa-duotone-combined-900', 'fa-sharp-solid-900', 'fa-sharp-regular-400', 'fa-sharp-light-300', 'fa-sharp-thin-100']
 while True:
     mode = input('Welcome to the FA Class Search Engine. Please Select a Mode:\n1. Search by Unicode\n2. Search by FA Class Name\n')
     if mode == '1':
