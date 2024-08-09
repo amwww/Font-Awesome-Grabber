@@ -7,6 +7,8 @@ os.mkdir('fa-duotone-combined-900')
 with open('fa-duotone-combined-900.json', 'w') as f:
     f.write('{\n\n}')
 print(' | Done')
+primary = input('Enter Primary Duotone Color (CSS): ')
+secondary = input('Enter Secondary Duotone Color (CSS): ')
 
 print('Building Duotone...')
 with open('fa-duotone-900.json', 'r') as f:
@@ -36,6 +38,13 @@ with open('fa-duotone-900.json', 'r') as f:
         wrapper2 = re.findall(r'<svg[ a-zA-Z0-9=".:\/-]*>', svg2)
         if len(wrapper1) < 1:
             wrapper1 = wrapper2
+        symbol1 = re.findall(r'<use[a-z-0-9A-Z=" #_(,).]*\/>', svg1)[0]
+        withfill1 = symbol1.replace('/>', f' fill="{primary}"/>')
+        symbol2 = re.findall(r'<use[a-z-0-9A-Z=" #_(,).]*\/>', svg2)[0]
+        withfill2 = symbol2.replace('/>', f' fill="{secondary}"/>')
         with open(f'fa-duotone-combined-900/{idx}.svg', 'w') as f:
-            f.write(svg2.replace('</svg>', innerSvg[0] + '</svg>').replace(wrapper2[0], wrapper1[0]) if innerSvg else svg2)
+            svg = svg2.replace('</svg>', innerSvg[0] + '</svg>').replace(wrapper2[0], wrapper1[0]) if innerSvg else svg2
+            svg.replace(symbol2, withfill2)
+            svg.replace(symbol1, withfill1)
+            f.write(svg)
 print('Finished.')

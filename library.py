@@ -29,7 +29,7 @@ for folder in tqdm(folders):
             }
             body {
                 display: grid;
-                grid-template-columns: repeat(auto-fill, 60px);
+                grid-template-columns: repeat(auto-fill, 80px);
                 font-family: Arial, Helvetica, sans-serif;
             }
             @font-face{
@@ -46,11 +46,13 @@ for folder in tqdm(folders):
         f.write(template)
     with open(f'library/{folder}.html', 'a') as f:
         svgidx = 0
+        startidx = 0
         try:
             with open(f'{folder}/0.svg', 'r') as s:
                 pass
         except Exception as e:
             svgidx = 1
+            startidx = 1
         svgs = []
         while True:
             try:
@@ -67,6 +69,7 @@ for folder in tqdm(folders):
         for idx, svg in enumerate(svgs):
             f.write('<div class="icon-wrapper">')
             f.write(svg)
+            idx += startidx
             try:
                 f.write(f'<style>#ttf-icon-{idx}::before' + '{' + f'content:"\{iconidxtb[idx].lower()}"' + '}</style>')
                 f.write(f'<p id="ttf-icon-{idx}" class="ttf-icon"></p>')
