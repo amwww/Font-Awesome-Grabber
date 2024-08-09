@@ -19,8 +19,11 @@ pip install -r requirements.txt
 ```
 (Windows)
 
-4. Run the main.py file and wait.
-5. Fonts should be downloaded into the directory in the form of ttfs.
-6. You can also access svgs in the folders.
-7. To search, run the search.py file and search by class which will give you its appropriate svg.
-8. Or, you can just go to the FA website and search then enter the unicode.
+For Releases v1+
+4. Run the installer.py file to install fonts
+5. Download and Proccess Fonts and CSS
+6. Optionally Install the library
+7. Use the duotone builder to build duotones with different colors
+
+For Releases Below v1
+4. Run the main.py file and press enter to continue with different parts of the installation
