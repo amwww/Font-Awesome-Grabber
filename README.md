@@ -20,10 +20,12 @@ pip install -r requirements.txt
 (Windows)
 
 For Releases v1+
+
 4. Run the installer.py file to install fonts
 5. Download and Proccess Fonts and CSS
 6. Optionally Install the library
 7. Use the duotone builder to build duotones with different colors
 
 For Releases Below v1
+
 4. Run the main.py file and press enter to continue with different parts of the installation
