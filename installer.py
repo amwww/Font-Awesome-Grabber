@@ -12,6 +12,7 @@ installer = Menu(
     "Download & Proccess Fonts",
     "Download & Proccess CSS",
     "Install Library",
+    "View Library",
     "Duotone Builder",
     "Search Icons",
     "Reset All",
@@ -67,7 +68,7 @@ while True:
             if not os.path.isdir('backups'):
                 os.mkdir('backups')
             backupfolder = f'backup-{datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")}'
-            os.mkdir(backupfolder)
+            os.mkdir(f'backups/{backupfolder}')
             for file in tqdm(files):
                 if os.path.isfile(file):
                     os.rename(file, f'backups/{backupfolder}/{file}')
@@ -89,11 +90,12 @@ while True:
                 continue
             print_rich(f'[bold yellow]Restoring Backup {backup}...[/bold yellow]')
             dir = os.getcwd()
-            for file in tqdm(os.listdir(backup)):
+            for file in tqdm(os.listdir(f'backups/{backup}')):
                 if os.path.isfile(f'backups/{backup}/{file}'):
                     os.rename(f'backups/{backup}/{file}', f'{file}')
                     shutil.copy(f'{file}', f'backups/{backup}/{file}')
                 if os.path.isdir(f'backups/{backup}/{file}'):
+                    shutil.rmtree(f'{file}')
                     os.rename(f'backups/{backup}/{file}', f'{file}')
                     shutil.copytree(f'{file}', f'backups/{backup}/{file}')
         case "Reset All":
@@ -156,6 +158,22 @@ while True:
             library()
             setdone('library')
             print_rich('[bold green]Done.[/bold green]')
+        case "View Library":
+            if not hasdone('library'):
+                print_rich('[bold red]! Please Install Library First ![/bold red]')
+                continue
+            libfolders = ['fa-solid-900', 'fa-regular-400', 'fa-light-300', 'fa-thin-100', 'fa-duotone-900', 'fa-duotone-combined-900', 'fa-sharp-solid-900', 'fa-sharp-regular-400', 'fa-sharp-light-300', 'fa-sharp-thin-100']
+            librarymenu = Menu(
+                *libfolders,
+                'Exit',
+                title="[bold yellow]Library Selector[/bold yellow]",
+                panel_title="Select a Library",
+                highlight_color='italic blue',
+                align='left'
+            ).ask(screen=True)
+            if librarymenu == 'Exit':
+                continue
+            print_rich(f'[bold green]Library[/bold green] | [bold yellow]{librarymenu}[/bold yellow] | [bold blue]library/{librarymenu}.html[/bold blue] | [italic bold magenta]"{os.getcwd()}/library/{librarymenu}.html"[italic bold magenta]')
         case "Duotone Builder":
             if not hasdone('fonts'):
                 print_rich('[bold red]! Please Download & Proccess Fonts First ![/bold red]')

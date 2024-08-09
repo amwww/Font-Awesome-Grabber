@@ -28,7 +28,7 @@ def library():
                 .ttf-icon::before {
                     font-family: 'FontAwesome';
                 }
-                body {
+                main {
                     display: grid;
                     grid-template-columns: repeat(auto-fill, 80px);
                     font-family: Arial, Helvetica, sans-serif;
@@ -36,12 +36,24 @@ def library():
                 @font-face{
                     font-family:"FontAwesome";
                     font-display:block;
-                    src:url(../../""" + f'{folder}' + """.ttf) format("truetype")}
+                    src:url(../""" + f'{folder}' + """.ttf) format("truetype")
+                }
+                h1, a, p {
+                    font-family:Arial;
+                }
+                .class-name{
+                    font-size: 10px;
+                }
             </style>
             
         </head>
         <body>
-
+        <h1>Font Awesome Grabber by amwww</h1>
+        <a href="https://github.com/amwww/Font-Awesome-Grabber">View on Github</a>
+        <p>Font """ + f"{folder}" + """ </p>
+        """ + " ".join([f'<a href="{fname}.html">{fname}</a>' for fname in folders]) + """
+        <hr>
+        <main>
         """
         with open(f'library/{folder}.html', 'w') as f:
             f.write(template)
@@ -66,19 +78,32 @@ def library():
             with open(f'{folder}.json', 'r') as j:
                 idxs = json.load(j)
                 for key in idxs:
-                    iconidxtb[idxs[key][0]] = key
-            for idx, svg in tqdm(enumerate(svgs)):
+                    if idxs[key][0] in iconidxtb:
+                        iconidxtb[idxs[key][0]].append(key)
+                        continue
+                    iconidxtb[idxs[key][0]] = [key]
+            uniclass = {}
+            with open(f'icons.json', 'r') as i:
+                icons = json.load(i)
+                for classname in icons:
+                    uniclass[icons[classname]] = classname
+            for idx, svg in enumerate(svgs):
                 f.write('<div class="icon-wrapper">')
                 f.write(svg)
-                idx += startidx
                 try:
-                    f.write(f'<style>#ttf-icon-{idx}::before' + '{' + f'content:"\{iconidxtb[idx].lower()}"' + '}</style>')
+                    for fidx in iconidxtb[idx]:
+                        f.write(f'<a href="../{folder}/{idx}.svg">{fidx}</a>')
+                        try:
+
+                            f.write(f'<p class="class-name">{uniclass[fidx.lower()]}</p>')
+                        except KeyError:
+                            pass
+                    f.write(f'<style>#ttf-icon-{idx}::before' + '{' + f'content:"\{iconidxtb[idx][0].lower()}"' + '}</style>')
                     f.write(f'<p id="ttf-icon-{idx}" class="ttf-icon"></p>')
-                    f.write(f'<a href="../../{folder}/{idx}.svg">{iconidxtb[idx]}</a>')
-                except KeyError as e:
+                except KeyError:
                     pass
                 f.write('</div>')
-            f.write("\n</body>\n</html>")
+            f.write("\n</main>\n</body>\n</html>")
     print('Finished.')
 
 if __name__ == '__main__':
